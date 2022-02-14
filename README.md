@@ -1,2 +1,2 @@
 # SAS-assignments
-This repository is cnsisting of BAN500 & BAN600 coursework based on SAS 
+This repository is consisting of MIS-MS_coursework based on SAS and practice notes/codes
