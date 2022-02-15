@@ -47,3 +47,38 @@ sum fund;
 by class;
 id class;
 run;
+/*Creating Enhanced Reports:: 
+continue...*/
+proc import datafile = "/home/u60914068/FunRun_data_id_class" 
+DBMS = xlsx out = FR0 replace ;
+run;
+
+/*Computing Multiple Group Subtotals
+You can also use two or more variables in a BY statement to define groups and subgroups. 
+The following program produces a report that groups observations first by class and then by gender:*/
+proc sort data = fr0;
+by class gender;
+run;
+proc print data = FR0 noobs sumlabel="Total Fund Raised" grandtotal_label="Grand Total Fund Raised";
+title 'Fund Raised by Class and gender';
+var name stu_id gender class fund;
+sum fund;
+by class gender;
+id class gender;
+run; /*totals are generatedbased based on both Class and Gender*/
+
+/*When you use multiple BY variables as in the previous example, 
+you can use the SUMBY statement to control which BY variable causes subtotals to appear.
+You can specify only one SUMBY variable, and this variable must also be specified in the BY statement. 
+PROC PRINT computes sums when a change occurs to the following values:
+**the value of the SUMBY variable
+**the value of any variable in the BY statement that is specified before the SUMBY variable*/
+proc print data = FR0 noobs sumlabel="Total Fund Raised" grandtotal_label="Grand Total Fund Raised";
+title 'Fund Raised by Class and gender + sumby class';
+var name stu_id gender class fund;
+sum fund;
+by class gender;
+id class gender;
+sumby class;
+run;
+
