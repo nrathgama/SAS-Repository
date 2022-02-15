@@ -47,6 +47,8 @@ sum fund;
 by class;
 id class;
 run;
+
+#############################
 /*Creating Enhanced Reports:: 
 continue...*/
 proc import datafile = "/home/u60914068/FunRun_data_id_class" 
